@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
+      
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
@@ -23,6 +23,6 @@ jobs:
 
       - name: Install Bandit
         run: pip install bandit
-
+      
       - name: Run Bandit analysis
-        run: bandit -r . --format plain | grep "Severity: Medium"
+        run: bandit -r . --format plain | grep "Severity: High"
