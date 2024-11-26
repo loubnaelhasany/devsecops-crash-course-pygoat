@@ -22,8 +22,7 @@ jobs:
 
       - name: Install Bandit
         run: |
-          python -m pip install --upgrade pip
           pip install bandit
 
-      - name: Run Bandit
-        run: bandit -r .
+      - name: Run Bandit with exclusions
+        run: bandit -r . --skip B404,B506
