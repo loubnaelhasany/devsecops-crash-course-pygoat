@@ -24,6 +24,5 @@ jobs:
       - name: Install Bandit
         run: pip install bandit
 
-      - name: Run Bandit analysis and filter by severity (Medium)
-        run: |
-          bandit -r . | grep "Severity: Medium" -A 20
+      - name: Run Bandit analysis
+        run: bandit -r . --format plain | grep "Severity: Medium"
