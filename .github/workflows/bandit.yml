@@ -25,8 +25,9 @@ jobs:
         run: pip install bandit
 
       - name: Run Bandit analysis
-        run: bandit -r . --severity-level high --confidence-level high --format json > bandit-report.json
+        run: bandit -r . --format json > bandit-report.json
 
-      - name: Display filtered report
+      - name: Filter High severity and confidence issues
         run: |
-          cat bandit-report.json | jq '.results | map(select(.issue_severity == "HIGH" and .issue_confidence == "HIGH"))'
+          cat bandit-report.json | jq '.results | map(select(.issue_severity == "HIGH" and .issue_confidence == "HIGH"))' > filtered-report.json
+          cat filtered-report.json
