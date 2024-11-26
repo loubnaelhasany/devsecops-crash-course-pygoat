@@ -1,4 +1,4 @@
-name: Bandit SAST Workflow
+name: Analyse SAST avec Bandit
 
 on:
   push:
@@ -9,20 +9,20 @@ on:
       - main
 
 jobs:
-  bandit:
+  sast:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
+      
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
-          python-version: 3.x
+          python-version: '3.x'
 
       - name: Install Bandit
-        run: |
-          pip install bandit
-
-      - name: Run Bandit with exclusions
-        run: bandit -r . --skip B404,B506
+        run: pip install bandit
+      
+      - name: Run Bandit analysis
+        run: bandit -r .
