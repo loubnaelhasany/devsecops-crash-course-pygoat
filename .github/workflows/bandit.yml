@@ -26,5 +26,4 @@ jobs:
           pip install bandit
 
       - name: Run Bandit
-        run: |
-          bandit -r . --severity-level high --confidence-level high --quiet
+        run: bandit -r .
