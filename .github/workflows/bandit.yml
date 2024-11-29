@@ -1,4 +1,4 @@
-name: Bandit SAST Workflow
+name: Bandit Workflow
 
 on:
   push:
@@ -26,4 +26,6 @@ jobs:
           pip install bandit
 
       - name: Run Bandit
-        run: bandit -r . --severity-level high --confidence-level high --exit-zero
+        run: |
+          bandit -r . --severity-level high --confidence-level high -f json > bandit-report.json
+          cat bandit-report.json | jq '.results[] | select(.issue_severity == "HIGH" and .issue_confidence == "HIGH")'
