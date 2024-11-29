@@ -1,4 +1,4 @@
-name: Bandit Workflow
+name: Bandit SAST Workflow
 
 on:
   push:
@@ -27,5 +27,4 @@ jobs:
 
       - name: Run Bandit
         run: |
-          bandit -r . --severity-level high --confidence-level high -f json > bandit-report.json
-          cat bandit-report.json | jq '.results[] | select(.issue_severity == "HIGH" and .issue_confidence == "HIGH")'
+          bandit -r . --severity-level high --confidence-level high --quiet
